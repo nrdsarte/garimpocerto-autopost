@@ -59,11 +59,11 @@ def main():
         browser = p.chromium.launch(headless=True)
         ctx = browser.new_context(storage_state=STORAGE)
         page = ctx.new_page()
-        page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=60000)
-        page.wait_for_selector('[data-testid="tweetTextarea_0"]', timeout=60000)
         for item in to_post:
             text = make_tweet(item)
             try:
+                page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=60000)
+                page.wait_for_selector('[data-testid="tweetTextarea_0"]', timeout=60000)
                 page.click('[data-testid="tweetTextarea_0"]')
                 page.keyboard.insert_text(text)
                 page.wait_for_timeout(800)
