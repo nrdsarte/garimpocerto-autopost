@@ -125,7 +125,13 @@ def main():
             text = make_tweet(item)
             try:
                 page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=60000)
-                page.wait_for_selector('[data-testid="tweetTextarea_0"]', timeout=60000)
+                try:
+                    page.wait_for_selector('[data-testid="tweetTextarea_0"]', timeout=60000)
+                except Exception:
+                    page.screenshot(path="fail.png")
+                    log("DEBUG_URL " + page.url)
+                    log("DEBUG_TEXT " + (page.locator("body").inner_text() or "")[:500].replace("\n", " | "))
+                    raise
                 page.click('[data-testid="tweetTextarea_0"]')
                 page.keyboard.insert_text(text)
                 page.wait_for_timeout(800)
