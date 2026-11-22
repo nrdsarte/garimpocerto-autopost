@@ -71,9 +71,12 @@ def main():
                 if btn.is_disabled():
                     raise RuntimeError("post button disabled (session expired?)")
                 btn.click()
-                page.wait_for_timeout(3000)
+                page.wait_for_timeout(5000)
                 left = page.eval_on_selector('[data-testid="tweetTextarea_0"]', "e=>(e.innerText||'').trim().length")
                 if left:
+                    page.screenshot(path="fail.png", full_page=False)
+                    log("DEBUG_URL " + page.url)
+                    log("DEBUG_TEXT " + (page.locator("body").inner_text() or "")[:600].replace("\n", " | "))
                     raise RuntimeError("post may not have been sent")
                 state["posted"].append(item["guid"])
                 json.dump(state, open(STATE_FILE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
