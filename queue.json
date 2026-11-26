@@ -19,7 +19,7 @@
       "store_name": "Amazon",
       "store_url": "https://www.amazon.com.br/dp/B0CB6JMKG5?tag=nick0e56-20&linkCode=ogi&th=1&psc=1",
       "time": "2026-11-26T02:57:23.657692+00:00",
-      "posted": false
+      "posted": true
     },
     {
       "id": "e281d33d-0303-4bc8-af8d-d880d8698c43",
@@ -29,7 +29,7 @@
       "store_name": "Mercado Livre",
       "store_url": "https://meli.la/1rjmuhv",
       "time": "2026-11-26T03:34:23.657692+00:00",
-      "posted": false
+      "posted": true
     },
     {
       "id": "6f78d023-2547-49c2-b4ad-e653a2a8790c",
